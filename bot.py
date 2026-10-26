@@ -18,7 +18,9 @@ BOT_TOKEN = os.getenv("BOT_TOKEN")
 ADMIN_ID = int(os.getenv("ADMIN_ID", "0"))
 YUMONEY_PHONE = os.getenv("YUMONEY_PHONE", "79139571457")
 
-bot = Bot(BOT_TOKEN, default=DefaultBotProperties(parse_mode="HTML"))
+from aiogram.client.session.aiohttp import AiohttpSession
+session = AiohttpSession(timeout=60.0)
+bot = Bot(BOT_TOKEN, default=DefaultBotProperties(parse_mode="HTML"), session=session)
 dp = Dispatcher()
 
 DB_PATH = "bot.db"
